@@ -35,12 +35,12 @@ body {
 /* --- Contenedor Principal y Estructura de Columnas --- */
 
 .contenedor-principal {
-    /* Eliminamos el max-width para que ocupe el 100% del ancho de la ventana */
-    max-width: none; 
-    /* Eliminamos el margen auto para que se pegue a los bordes */
-    margin: 0; 
-    /* Mantenemos un padding horizontal para que el texto no toque el borde */
-    padding: 20px 10px; 
+    /* Eliminamos el max-width para que ocupe el 100% del ancho de la ventana */
+    max-width: none; 
+    /* Eliminamos el margen auto para que se pegue a los bordes */
+    margin: 0; 
+    /* MODIFICAR: Quitamos el padding horizontal (10px) y solo mantenemos el vertical (20px) */
+    padding: 20px 0; 
 }
 }
 
@@ -54,15 +54,14 @@ body {
 
 /* Columna Lateral Extendida "Sobre Mí" */
 .columna-lateral {
-    width: 35%; 
-    padding-right: 15px;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    flex-direction: column;
-    /* QUITAMOS EL PADDING EXTRA AQUÍ para que el contenido se pegue al borde izquierdo */
-    padding-left: 0; 
+    width: 35%; 
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    /* MODIFICAR: Añadimos padding-left para que el contenido no toque el borde de la ventana */
+    padding-left: 20px; 
 }
-
 .sobre-mi {
     flex-grow: 1; /* Esto hace que ocupe todo el espacio disponible */
     font-size: 12px;
@@ -80,9 +79,12 @@ body {
 
 /* Bloque de Proyectos a la Derecha */
 .proyectos-derecha {
-    /* Reducimos el padding izquierdo para que se vea más centrado en el espacio restante */
-    width: 65%; 
-    padding-left: 10px; 
+    /* Reducimos el padding izquierdo para que se vea más centrado en el espacio restante */
+    width: 65%; 
+    /* MODIFICAR: Aumentamos el padding-left para centrar los proyectos */
+    padding-left: 50px; 
+    /* AÑADIR: Añadimos un padding-right para que no se pegue al borde derecho */
+    padding-right: 20px;
 }
 
 .proyecto {
@@ -133,9 +135,11 @@ body {
 /* --- Círculos de Fotos en forma de Triángulo --- */
 
 .contenedor-fotos-triangulo {
-    position: relative;
-    height: 100px; 
-    margin-top: 20px;
+    position: relative;
+    height: 100px; 
+    margin-top: 20px;
+    /* AÑADIR: Asegura que los círculos se alineen con el nuevo padding de la columna lateral */
+    padding-left: 20px; 
 }
 
 .circulo-foto {
