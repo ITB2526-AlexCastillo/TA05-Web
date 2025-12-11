@@ -42,21 +42,19 @@ body {
 /* --- Contenedor Principal y Estructura de Columnas --- */
 
 .contenedor-principal {
-    /* Eliminamos el max-width para que ocupe el 100% del ancho de la ventana */
     max-width: none; 
-    /* Eliminamos el margen auto para que se pegue a los bordes */
     margin: 0; 
-    /* MODIFICAR: Quitamos el padding horizontal (10px) y solo mantenemos el vertical (20px) */
     padding: 20px 0; 
+    /* AÑADIDO: Esto hace que el contenido se estire y empuje al footer hacia abajo */
+    flex-grow: 1; 
 }
 }
 
 .contenido-doble {
-    display: flex;
-    /* Asegura que la columna lateral se estire casi hasta el footer. 
-       (100vh - 40px del header - 50px del footer) */
-    min-height: calc(100vh - 90px); 
-    border-bottom: 1px solid transparent; 
+    display: flex;
+    /* ELIMINAR/COMENTAR: Ya no es necesario, lo maneja flex-grow: 1 en el contenedor-principal */
+    /* min-height: calc(100vh - 90px); */ 
+    border-bottom: 1px solid transparent; 
 }
 
 /* Columna Lateral Extendida "Sobre Mí" */
