@@ -1,10 +1,17 @@
 /* Estilos Generales */
 body {
-    background-color: #fff; /* MODIFICADO: Fondo blanco */
-    color: #000; /* MODIFICADO: Texto negro para contraste */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    box-sizing: border-box;
+    background-color: #fff; 
+    color: #000; 
+    font-family: Arial, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    
+    /* AÑADIDO: Configura el body como contenedor Flexbox */
+    display: flex; 
+    /* AÑADIDO: Apila los hijos (header, contenedor, footer) verticalmente */
+    flex-direction: column; 
+    /* AÑADIDO: Fuerza al body a ocupar al menos el alto total de la ventana */
+    min-height: 100vh; 
 }
 
 /* --- Header y Footer --- */
