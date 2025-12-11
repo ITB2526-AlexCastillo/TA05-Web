@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de Contacto / Feedback</title>
+    
+    </head>
+<body>
+
+    <header class="web-header">
+        <div>
+            <a href="index.html">INICIO</a> | 
+            <a href="proyect_list.html">PROYECTOS</a> | 
+            <a href="cuestionario.html">CUESTIONARIO</a>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        
+        <form action="/enviar-formulario" method="POST" class="formulario-cuestionario">
+            
+            <h1>Cuestionario de Feedback</h1>
+
+            <section>
+                <h2>Parte 1: Datos de Contacto</h2>
+                
+                <p>Por favor, ingrese su información de contacto:</p>
+                
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+
+                <label for="email">Correo Electrónico:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+            </section>
+            
+            <hr>
+
+            <section>
+                <h2>Parte 2: Calidad de la Página</h2>
+                
+                <p>¿Qué tan fácil le resultó navegar por el sitio?</p>
+                
+                <div>
+                    <input type="radio" id="facil" name="navegacion" value="facil" checked>
+                    <label for="facil">Muy Fácil</label><br>
+                    
+                    <input type="radio" id="normal" name="navegacion" value="normal">
+                    <label for="normal">Normal</label><br>
+                    
+                    <input type="radio" id="dificil" name="navegacion" value="dificil">
+                    <label for="dificil">Algo Difícil</label><br>
+                </div>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>Comentarios Adicionales</h2>
+                
+                <label for="comentarios">Si tiene alguna sugerencia o comentario:</label><br>
+                <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea>
+            </section>
+            
+            <hr>
+
+            <div>
+                <input type="submit" value="Enviar Cuestionario">
+                <input type="reset" value="Borrar Respuestas">
+            </div>
+
+        </form>
+        
+    </main>
+
+    <footer class="web-footer">
+        <p>Menu de navegación entre páginas | © 2025</p>
+    </footer>
+
+</body>
+</html>
