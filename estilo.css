@@ -1,10 +1,10 @@
 /* Estilos Generales */
 body {
-    background-color: #000; /* Fondo negro */
-    color: #fff; /* Texto blanco */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    box-sizing: border-box;
+    background-color: #fff; /* MODIFICADO: Fondo blanco */
+    color: #000; /* MODIFICADO: Texto negro para contraste */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 /* --- Header y Footer --- */
