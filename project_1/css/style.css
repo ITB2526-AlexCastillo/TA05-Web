@@ -1,0 +1,59 @@
+/* 1. Título principal centrado arriba */
+.titulo-proyecto {
+    text-align: center;
+    margin: 0;
+    padding: 40px 0;
+    width: 100%;
+}
+
+/* 2. Centrar todo el bloque de contenido en la pantalla */
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Esto centra el bloque "article" en el medio */
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* 3. El artículo actúa como una columna central de ancho fijo */
+.detalle-proyecto-simple {
+    width: 100%;
+    max-width: 800px; /* Limita el ancho para que no se desparrame en pantallas grandes */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* El texto dentro del bloque sigue empezando a la izquierda */
+}
+
+/* 4. Aseguramos que cada sección ocupe todo el ancho del bloque central */
+.seccion-proyecto,
+.contenido-alineado,
+.bloques-inferiores {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* 5. Los elementos internos */
+.linea-hola, .bloque-texto p {
+    text-align: left;
+    margin: 10px 0;
+}
+
+.circulo-foto {
+    width: 120px;
+    height: 120px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+/* 6. Centrar la navegación al final */
+.navegacion-proyecto {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 50px;
+}

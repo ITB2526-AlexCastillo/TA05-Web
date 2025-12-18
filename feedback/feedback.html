@@ -1,80 +1,111 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuestionario de Contacto / Feedback</title>
-    
-    </head>
+    <title>Contact / Feedback Questionnaire</title>
+</head>
 <body>
 
     <header class="web-header">
         <div>
-            <a href="index.html">INICIO</a> | 
-            <a href="proyect_list.html">PROYECTOS</a> | 
-            <a href="cuestionario.html">CUESTIONARIO</a>
+            <a href="../first_page/index.html">HOME</a> |
+            <a href="../project_list/project_list.html">PROJECTS</a> |
+            <a href="feedback.html">QUESTIONNAIRE</a>
         </div>
     </header>
 
     <main class="contenedor-principal">
-        
-        <form action="/enviar-formulario" method="POST" class="formulario-cuestionario">
-            
-            <h1>Cuestionario de Feedback</h1>
+
+        <form action="/send-form" method="POST" class="formulario-cuestionario">
+
+            <h1>Feedback Questionnaire</h1>
 
             <section>
-                <h2>Parte 1: Datos de Contacto</h2>
-                
-                <p>Por favor, ingrese su información de contacto:</p>
-                
-                <label for="nombre">Nombre:</label><br>
+                <h2>Part 1: Contact Information</h2>
+
+                <p>Please enter your contact information:</p>
+
+                <label for="nombre">Name:</label><br>
                 <input type="text" id="nombre" name="nombre" required><br><br>
 
-                <label for="email">Correo Electrónico:</label><br>
+                <label for="email">Email Address:</label><br>
                 <input type="email" id="email" name="email" required><br><br>
             </section>
-            
+
             <hr>
 
             <section>
-                <h2>Parte 2: Calidad de la Página</h2>
-                
-                <p>¿Qué tan fácil le resultó navegar por el sitio?</p>
-                
-                <div>
-                    <input type="radio" id="facil" name="navegacion" value="facil" checked>
-                    <label for="facil">Muy Fácil</label><br>
-                    
-                    <input type="radio" id="normal" name="navegacion" value="normal">
-                    <label for="normal">Normal</label><br>
-                    
-                    <input type="radio" id="dificil" name="navegacion" value="dificil">
-                    <label for="dificil">Algo Difícil</label><br>
+                <h2>Part 2: Site Quality & Experience</h2>
+                <p>Please answer the following questions:</p>
+
+                <div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 30px;">
+
+                    <div style="flex: 1;">
+                        <label><strong>1. Navigation ease:</strong></label><br>
+                        <input type="radio" id="q1a" name="q1" value="easy" checked> <label for="q1a">Easy</label><br>
+                        <input type="radio" id="q1b" name="q1" value="hard"> <label for="q1b">Hard</label>
+                    </div>
+
+                    <div style="flex: 1;">
+                        <label><strong>2. Design quality:</strong></label><br>
+                        <input type="radio" id="q2a" name="q2" value="good" checked> <label for="q2a">Good</label><br>
+                        <input type="radio" id="q2b" name="q2" value="poor"> <label for="q2b">Poor</label>
+                    </div>
+
+                    <div style="flex: 1;">
+                        <label><strong>3. Loading speed:</strong></label><br>
+                        <input type="radio" id="q3a" name="q3" value="fast" checked> <label for="q3a">Fast</label><br>
+                        <input type="radio" id="q3b" name="q3" value="slow"> <label for="q3b">Slow</label>
+                    </div>
+
+                </div>
+
+                <div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 20px;">
+
+                    <div style="flex: 1;">
+                        <label><strong>4. Mobile friendly:</strong></label><br>
+                        <input type="radio" id="q4a" name="q4" value="yes" checked> <label for="q4a">Yes</label><br>
+                        <input type="radio" id="q4b" name="q4" value="no"> <label for="q4b">No</label>
+                    </div>
+
+                    <div style="flex: 1;">
+                        <label><strong>5. Clear content:</strong></label><br>
+                        <input type="radio" id="q5a" name="q5" value="yes" checked> <label for="q5a">Yes</label><br>
+                        <input type="radio" id="q5b" name="q5" value="no"> <label for="q5b">No</label>
+                    </div>
+
+                    <div style="flex: 1;">
+                        <label><strong>6. Recommendation:</strong></label><br>
+                        <input type="radio" id="q6a" name="q6" value="yes" checked> <label for="q6a">Yes</label><br>
+                        <input type="radio" id="q6b" name="q6" value="no"> <label for="q6b">No</label>
+                    </div>
+
                 </div>
             </section>
 
             <hr>
 
             <section>
-                <h2>Comentarios Adicionales</h2>
-                
-                <label for="comentarios">Si tiene alguna sugerencia o comentario:</label><br>
-                <textarea id="comentarios" name="comentarios" rows="4" cols="50"></textarea>
+                <h2>Additional Comments</h2>
+
+                <label for="comentarios">If you have any suggestions or comments:</label><br>
+                <textarea id="comentarios" name="comentarios" rows="4" cols="50" style="width: 100%; max-width: 600px;"></textarea>
             </section>
-            
+
             <hr>
 
             <div>
-                <input type="submit" value="Enviar Cuestionario">
-                <input type="reset" value="Borrar Respuestas">
+                <input type="submit" value="Submit Questionnaire">
+                <input type="reset" value="Clear Answers">
             </div>
 
         </form>
-        
+
     </main>
 
     <footer class="web-footer">
-        <p>Menu de navegación entre páginas | © 2025</p>
+        <p>Navigation Menu | © 2025</p>
     </footer>
 
 </body>

@@ -1,0 +1,56 @@
+/* 1. Contenedor que divide la pantalla en dos secciones */
+.contenido-doble {
+    display: flex;
+    flex-direction: row; /* Lateral a la izquierda, Proyectos a la derecha */
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* 2. Sección Izquierda (About Me) - Estrecha */
+.columna-lateral {
+    flex: 0 0 200px; /* Ancho fijo para que no baile */
+    padding: 30px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+/* 3. CONTENEDOR DE PROYECTOS (La clave está aquí) */
+.proyecto {
+    flex: 1; /* Ocupa todo el resto de la pantalla */
+    display: flex;
+    flex-direction: column; /* <--- Esto obliga a poner uno debajo de otro */
+    align-items: center;    /* Centra los proyectos horizontalmente */
+    padding: 60px 20px;
+    gap: 100px;             /* Espacio de separación entre Proyecto 1 y 2 */
+}
+
+/* 4. Cada bloque de Proyecto individual */
+.columna-info {
+    width: 100%;
+    max-width: 700px; /* Para que el texto no sea infinito hacia los lados */
+    text-align: center;
+}
+
+/* Ajustes visuales rápidos */
+.titulo-proyecto {
+    font-size: 2rem;
+    color: #4b2e83;
+    text-decoration: none;
+}
+
+.contenedor-fotos-triangulo {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.circulo-foto {
+    width: 60px;
+    height: 60px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
