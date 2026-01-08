@@ -54,3 +54,57 @@
     background-color: #ccc;
     border-radius: 50%;
 }
+
+/* ============================================================
+   AÑADIR AL FINAL DEL ARCHIVO PARA DISEÑO MÓVIL (RESPONSIVE)
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    /* Forzamos a que las columnas se apilen una debajo de otra */
+    .contenido-doble {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    /* El "Sobre mí" ahora ocupará todo el ancho arriba */
+    .columna-lateral {
+        width: 100% !important;
+        margin-bottom: 40px;
+    }
+
+    /* Los proyectos se ponen en vertical */
+    .proyecto {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        gap: 50px;
+    }
+
+    /* Los cuadros de cada proyecto se ajustan al ancho del móvil */
+    .columna-info {
+        width: 100% !important;
+        padding: 20px;
+        box-sizing: border-box; /* Evita que el cuadro se salga de la pantalla */
+    }
+
+    /* Centramos el contenido de los proyectos para que luzca mejor en móvil */
+    .titulo-proyecto, .lineas-texto p {
+        text-align: center;
+    }
+
+    /* Escalamos el triángulo de fotos para que no ocupe demasiado espacio */
+    .contenedor-fotos-triangulo {
+        transform: scale(0.85);
+        margin: 10px auto;
+    }
+
+    /* El footer: enlaces uno debajo de otro para que sean fáciles de tocar */
+    .web-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 25px;
+    }
+}
