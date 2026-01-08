@@ -1,0 +1,107 @@
+/* --- Estilos Globales y Header/Footer --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.web-header, .web-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f9f9f9;
+}
+
+/* 1. Título principal centrado arriba */
+.titulo-proyecto {
+    text-align: center;
+    margin: 0;
+    padding: 40px 0;
+    width: 100%;
+}
+
+/* 2. Centrar todo el bloque de contenido en la pantalla */
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* 3. El artículo actúa como una columna central */
+.detalle-proyecto-simple {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* 4. Secciones y contenedores de ancho completo */
+.seccion-proyecto,
+.contenido-alineado,
+.bloques-inferiores {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* Flexbox para alinear texto y círculo horizontalmente si lo deseas */
+.contenido-alineado {
+    flex-direction: row; /* Alinea texto y círculo de lado a lado */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bloque-texto {
+    flex: 1;
+}
+
+/* 5. Elementos visuales (Círculos y Cuadrados) */
+.circulo-foto {
+    width: 120px;
+    height: 120px;
+    background-color: #ddd;
+    border-radius: 50%;
+    flex-shrink: 0; /* Evita que el círculo se deforme */
+    margin-left: 20px;
+}
+
+.bloques-inferiores {
+    flex-direction: row; /* Pone los recuadros de Tech A, B, C en línea */
+    flex-wrap: wrap;
+}
+
+.bloque-cuadrado {
+    padding: 15px 25px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Separadores */
+.separador-secciones {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 20px 0 40px 0;
+}
+
+/* 6. Centrar la navegación al final */
+.navegacion-proyecto {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 50px;
+}
+
+.navegacion-proyecto a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin: 0 10px;
+}

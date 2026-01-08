@@ -1,0 +1,153 @@
+/* --- Estilos Globales (Coherencia con las otras páginas) --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #fdfdfd;
+}
+
+/* 1. Header: Menú de navegación arriba */
+.web-header {
+    width: 100%;
+    background-color: #f4f4f4;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.web-header a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+/* 2. Contenedor Principal */
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    min-height: 80vh;
+}
+
+/* Centrar el título */
+.catalogo-proyectos h1 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+/* Mover lista a la derecha y preparar el centro */
+.catalogo-proyectos {
+    position: relative; /* Base para el despliegue central */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea proyectos a la derecha */
+    padding-right: 50px;
+    min-height: 500px;
+}
+
+/* Formato de "tarjeta" para los proyectos */
+.proyecto-lista {
+    width: 350px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.proyecto-lista:hover {
+    transform: translateX(-5px); /* Pequeño efecto al pasar el mouse */
+    border-color: #888;
+}
+
+.proyecto-lista a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.proyecto-lista h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+/* Detalles dentro del recuadro */
+.proyecto-lista div p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Ocultar las líneas <hr> ya que usamos bordes en los recuadros */
+hr {
+    display: none;
+}
+
+/* 5. Footer */
+.web-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f4f4f4;
+    margin-top: 40px;
+}
+
+/* --- ESTO FUERZA EL CENTRADO EN LA PANTALLA TOTAL --- */
+
+/* 1. Fondo oscuro que bloquea el resto de la vista */
+.proyecto-lista:hover::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 999;
+}
+
+/* 2. El recuadro de información: FIXED absoluto al monitor */
+.proyecto-lista div {
+    display: none;
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+
+    width: 600px;
+    height: auto;
+    min-height: 350px;
+    padding: 40px;
+
+    background-color: white;
+    color: #333;
+    border-radius: 20px;
+    box-shadow: 0 0 100px rgba(0,0,0,0.8);
+    z-index: 10000;
+
+    /* Layout interno */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box; /* Evita que el padding deforme el tamaño */
+}
+
+/* 3. Acción de mostrar al pasar por el elemento de la derecha */
+.proyecto-lista:hover div {
+    display: flex;
+}
+
+/* 4. Estilos de texto */
+.proyecto-lista div h3 {
+    margin: 0 0 20px 0;
+    font-size: 2rem;
+    color: #007bff;
+}
+
+.proyecto-lista div p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
