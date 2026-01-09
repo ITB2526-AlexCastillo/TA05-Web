@@ -1,3 +1,41 @@
+/* --- NUEVO MENÚ DE NAVEGACIÓN --- */
+
+/* 1. Contenedor principal: Centra los botones en la pantalla */
+.web-header {
+    width: 100%;
+    padding: 25px 0;
+    display: flex;
+    justify-content: center;
+    background-color: #0d0d0d;
+
+    /* El HAZ DE LUZ: borde rojo con sombra brillante */
+    border-bottom: 2px solid #ff0000;
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4);
+    margin-bottom: 20px;
+}
+
+.nav-principal {
+    display: flex;
+    gap: 20px;
+}
+
+/* Botones cilíndricos rojos */
+.boton-nav {
+    text-decoration: none;
+    color: #ff0000;
+    font-weight: bold;
+    padding: 10px 25px;
+    border: 2px solid #ff0000;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.boton-nav:hover {
+    background-color: #ff0000;
+    color: #000; /* Texto negro al resaltar */
+    box-shadow: 0px 0px 15px #ff0000; /* Efecto neón */
+}
+
 /* 1. Contenedor que divide la pantalla en dos secciones */
 .contenido-doble {
     display: flex;
@@ -27,18 +65,27 @@
     gap: 100px;             /* Espacio de separación entre Proyecto 1 y 2 */
 }
 
-/* 4. Cada bloque de Proyecto individual */
+/* 4. Cada bloque de Proyecto (Ahora distribuido en fila) */
 .columna-info {
     width: 100%;
-    max-width: 700px; /* Para que el texto no sea infinito hacia los lados */
-    text-align: center;
+    max-width: 900px;      /* Aumentamos el ancho para que quepan las dos columnas */
+    display: flex;         /* Activa el alineado horizontal */
+    flex-direction: row;   /* Pone texto a la izquierda y fotos a la derecha */
+    align-items: center;   /* Centra verticalmente el texto con las fotos */
+    justify-content: space-between; /* Deja espacio entre ambos bloques */
+    gap: 50px;             /* Espacio de separación entre texto y fotos */
 }
+
 
 /* Ajustes visuales rápidos */
 .titulo-proyecto {
+    color: #ff0000;
     font-size: 2rem;
-    color: #4b2e83;
     text-decoration: none;
+}
+
+.linea-hola {
+    color: #b0b0b0; /* Gris claro para que sea legible */
 }
 
 .contenedor-fotos-triangulo {
@@ -48,13 +95,24 @@
     margin-top: 20px;
 }
 
+/* Los círculos de fotos en gris oscuro o rojo */
 .circulo-foto {
-    width: 60px;
-    height: 60px;
-    background-color: #ccc;
-    border-radius: 50%;
+    background-color: #333;
+    border: 1px solid #ff0000;
+}
+/* Cambia el fondo de toda la web a negro */
+body {
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+    margin: 0;
 }
 
+/* Ajusta la barra lateral para que combine con el modo oscuro */
+.columna-lateral {
+    background-color: #1a1a1a;
+    border-right: 1px solid #ff0000; /* Borde rojo sutil */
+    color: #e0e0e0;
+}
 /* ============================================================
    AÑADIR AL FINAL DEL ARCHIVO PARA DISEÑO MÓVIL (RESPONSIVE)
    ============================================================ */
