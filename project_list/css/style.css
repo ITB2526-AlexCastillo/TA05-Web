@@ -1,25 +1,55 @@
 /* --- Estilos Globales (Coherencia con las otras páginas) --- */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace; /* Fuente estilo código */
     line-height: 1.6;
-    background-color: #fdfdfd;
+    background-color: #0d0d0d; /* Negro profundo */
+    color: #e0e0e0;
 }
+
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    min-height: 80vh;
+    background-color: #0d0d0d;
+}
+
+h1 {
+    color: #ff0000;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
 
 /* 1. Header: Menú de navegación arriba */
 .web-header {
     width: 100%;
-    background-color: #f4f4f4;
-    padding: 20px 0;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
+    padding: 25px 0;
+    display: flex;
+    justify-content: center;
+    background-color: #0d0d0d;
+    border-bottom: 2px solid #ff0000; /* Haz de luz */
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4);
 }
 
 .web-header a {
     text-decoration: none;
-    color: #333;
-    margin: 0 10px;
+    color: #ff0000;
     font-weight: bold;
+    padding: 10px 25px;
+    border: 2px solid #ff0000;
+    border-radius: 50px; /* Cilindro */
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.web-header a:hover {
+    background-color: #ff0000;
+    color: black;
+    box-shadow: 0 0 15px #ff0000;
 }
 
 /* 2. Contenedor Principal */
@@ -48,19 +78,57 @@ body {
 }
 
 /* Formato de "tarjeta" para los proyectos */
+/* --- SUSTITUCIÓN: PARTE 1 (La tarjeta a la derecha) --- */
 .proyecto-lista {
     width: 350px;
-    border: 1px solid #ccc;
+    border: 1px solid #ff0000;      /* Borde rojo Ciberadmin */
     padding: 15px;
     margin-bottom: 15px;
-    background: white;
+    background: #1a1a1a;            /* Fondo oscuro */
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.proyecto-lista:hover {
-    transform: translateX(-5px); /* Pequeño efecto al pasar el mouse */
-    border-color: #888;
+.proyecto-lista h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #ff0000;                 /* Títulos en rojo */
+    text-transform: uppercase;
+}
+
+/* --- SUSTITUCIÓN: PARTE 2 (El efecto Hover central) --- */
+.proyecto-lista:hover::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9); /* Pantalla a negro */
+    z-index: 999;
+}
+
+.proyecto-lista:hover div {
+    display: flex;
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 550px;
+    padding: 40px;
+    background-color: #0d0d0d;
+    color: #00ff00;                 /* Texto verde terminal */
+    border: 2px solid #ff0000;      /* Haz de luz rojo */
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.7);
+    z-index: 10000;
+    flex-direction: column;
+}
+
+/* Opcional: El prefijo de consola para el texto verde */
+.proyecto-lista div p::before {
+    content: ">_ ";
+    color: #ff0000;
 }
 
 .proyecto-lista a {
@@ -87,11 +155,11 @@ hr {
 
 /* 5. Footer */
 .web-footer {
-    width: 100%;
+    border-top: 1px solid #333;
+    background-color: #0d0d0d;
+    color: #666;
+    padding: 30px;
     text-align: center;
-    padding: 20px 0;
-    background-color: #f4f4f4;
-    margin-top: 40px;
 }
 
 /* --- ESTO FUERZA EL CENTRADO EN LA PANTALLA TOTAL --- */
