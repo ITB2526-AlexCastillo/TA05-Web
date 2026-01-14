@@ -1,221 +1,215 @@
-/* --- Estilos Globales (Coherencia con las otras páginas) --- */
+/* ============================================================
+   ESTILOS GLOBALES
+   ============================================================ */
 body {
     margin: 0;
-    font-family: 'Courier New', Courier, monospace; /* Fuente estilo código */
+    font-family: 'Courier New', Courier, monospace;
     line-height: 1.6;
-    background-color: #0d0d0d; /* Negro profundo */
+    background-color: #0d0d0d; /* Fondo base por si falla el canvas */
     color: #e0e0e0;
 }
 
-.contenedor-principal {
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    min-height: 80vh;
-    background-color: #0d0d0d;
+/* --- FONDO MATRIX (CANVAS) --- */
+#ciber-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;       /* DETRÁS de todo */
+    opacity: 0.15;     /* Transparencia suave */
+    pointer-events: none;
 }
 
-h1 {
-    color: #ff0000;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-
-/* 1. Header: Menú de navegación arriba */
+/* ============================================================
+   HEADER: LUZ VERDE (MATRIX STYLE)
+   ============================================================ */
 .web-header {
     width: 100%;
     padding: 25px 0;
     display: flex;
     justify-content: center;
     background-color: #0d0d0d;
-    border-bottom: 2px solid #ff0000; /* Haz de luz */
-    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4);
+    margin-bottom: 20px;
+
+    /* CAMBIOS APLICADOS: VERDE Y CAPA SUPERIOR */
+    border-bottom: 2px solid #00ff00;
+    box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.4);
+    position: relative;
+    z-index: 100; /* Para que la lluvia no lo tape */
 }
 
 .web-header a {
     text-decoration: none;
-    color: #ff0000;
+    color: #00ff00; /* Texto Verde */
     font-weight: bold;
     padding: 10px 25px;
-    border: 2px solid #ff0000;
-    border-radius: 50px; /* Cilindro */
+    border: 2px solid #00ff00; /* Borde Verde */
+    border-radius: 50px;
     margin: 0 10px;
     transition: 0.3s;
 }
 
 .web-header a:hover {
-    background-color: #ff0000;
+    background-color: #00ff00; /* Fondo Verde al pasar ratón */
     color: black;
-    box-shadow: 0 0 15px #ff0000;
+    box-shadow: 0 0 15px #00ff00; /* Resplandor Verde */
 }
 
-/* 2. Contenedor Principal */
+/* ============================================================
+   CONTENEDOR PRINCIPAL
+   ============================================================ */
 .contenedor-principal {
     display: flex;
     flex-direction: column;
     padding: 40px;
     min-height: 80vh;
+
+    /* IMPORTANTE: Transparente para ver el Matrix de fondo */
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
 }
 
-/* Centrar el título */
+/* ============================================================
+   LISTA DE PROYECTOS (ESTILO HACKER ROJO)
+   ============================================================ */
+
+/* 1. EL PADRE: Alineación */
+.catalogo-proyectos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .catalogo-proyectos h1 {
     text-align: center;
-    width: 100%;
-    margin-bottom: 50px;
-}
-
-/* Mover lista a la derecha y preparar el centro */
-.catalogo-proyectos {
-    position: relative; /* Base para el despliegue central */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; /* Alinea proyectos a la derecha */
-    padding-right: 50px;
-    min-height: 500px;
-}
-
-/* Formato de "tarjeta" para los proyectos */
-/* --- SUSTITUCIÓN: PARTE 1 (La tarjeta a la derecha) --- */
-.proyecto-lista {
-    width: 350px;
-    border: 1px solid #ff0000;      /* Borde rojo Ciberadmin */
-    padding: 15px;
-    margin-bottom: 15px;
-    background: #1a1a1a;            /* Fondo oscuro */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.proyecto-lista h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #ff0000;                 /* Títulos en rojo */
+    color: #ff0000; /* Mantenemos rojo para contraste */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
 }
 
-/* --- SUSTITUCIÓN: PARTE 2 (El efecto Hover central) --- */
-.proyecto-lista:hover::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.9); /* Pantalla a negro */
-    z-index: 999;
-}
+/* 2. LA FICHA DEL PROYECTO */
+.proyecto-lista {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 20px !important;
 
-.proyecto-lista:hover div {
-    display: flex;
-    position: fixed;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 550px;
-    padding: 40px;
-    background-color: #0d0d0d;
-    color: #00ff00;                 /* Texto verde terminal */
-    border: 2px solid #ff0000;      /* Haz de luz rojo */
-    box-shadow: 0 0 50px rgba(255, 0, 0, 0.7);
-    z-index: 10000;
-    flex-direction: column;
-}
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 600px;
 
-/* Opcional: El prefijo de consola para el texto verde */
-.proyecto-lista div p::before {
-    content: ">_ ";
-    color: #ff0000;
-}
+    /* Fondo oscuro semi-transparente para leer texto sobre el Matrix */
+    background: rgba(26, 26, 26, 0.9);
+    border: 1px solid #ff0000;
 
-.proyecto-lista a {
+    padding: 20px;
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+    overflow: hidden;
     text-decoration: none;
-    color: #007bff;
+}
+
+/* HOVER: Expansión */
+.proyecto-lista:hover {
+    max-width: 750px;
+    background-color: #222;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+    z-index: 10;
 }
 
 .proyecto-lista h3 {
     margin-top: 0;
-    font-size: 1.2rem;
+    color: #ff0000;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
 }
 
-/* Detalles dentro del recuadro */
-.proyecto-lista div p {
-    margin: 5px 0;
+.datos-tecnicos p {
+    margin: 3px 0;
+    color: #ccc;
     font-size: 0.9rem;
-    color: #666;
+}
+.datos-tecnicos p::before { content: "> "; color: #ff0000; }
+
+.descripcion-oculta {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    transition: all 0.5s ease;
+    color: #888;
+    font-size: 0.9rem;
+    font-style: italic;
+    border-top: 1px solid #ff0000;
 }
 
-/* Ocultar las líneas <hr> ya que usamos bordes en los recuadros */
-hr {
-    display: none;
+.proyecto-lista:hover .descripcion-oculta {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 15px;
+    padding-top: 10px;
 }
 
-/* 5. Footer */
-.web-footer {
-    border-top: 1px solid #333;
-    background-color: #0d0d0d;
-    color: #666;
-    padding: 30px;
-    text-align: center;
-}
+/* Limpieza */
+.proyecto-lista::before { display: none !important; }
+hr { display: none; }
 
-/* --- ESTO FUERZA EL CENTRADO EN LA PANTALLA TOTAL --- */
+/* ============================================================
+   EFECTOS ESPECIALES (SCANLINES Y GLITCH)
+   ============================================================ */
 
-/* 1. Fondo oscuro que bloquea el resto de la vista */
-.proyecto-lista:hover::before {
-    content: "";
+/* 1. EFECTO MONITOR CRT (SCANLINES) */
+body::after {
+    content: " ";
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 999;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.2)
+    );
+    background-size: 100% 4px;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.6;
 }
 
-/* 2. El recuadro de información: FIXED absoluto al monitor */
-.proyecto-lista div {
-    display: none;
-    position: fixed;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-
-    width: 600px;
-    height: auto;
-    min-height: 350px;
-    padding: 40px;
-
-    background-color: white;
-    color: #333;
-    border-radius: 20px;
-    box-shadow: 0 0 100px rgba(0,0,0,0.8);
-    z-index: 10000;
-
-    /* Layout interno */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    box-sizing: border-box; /* Evita que el padding deforme el tamaño */
+/* 2. DEFINICIÓN ANIMACIÓN GLITCH */
+@keyframes glitch-aparicion {
+    0% { opacity: 0; transform: translateX(-50px) skewX(30deg); filter: blur(5px); }
+    20% { opacity: 1; transform: translateX(10px) skewX(-20deg); }
+    40% { opacity: 0.1; transform: translateX(-5px) skewX(10deg); }
+    60% { opacity: 1; transform: translateX(0) skewX(-5deg); filter: blur(0); }
+    80% { opacity: 0.8; transform: skewX(2deg); }
+    100% { opacity: 1; transform: none; }
 }
 
-/* 3. Acción de mostrar al pasar por el elemento de la derecha */
-.proyecto-lista:hover div {
-    display: flex;
+/* 3. APLICAR ANIMACIÓN A PROYECTOS */
+.proyecto-lista {
+    opacity: 0;
+    animation: glitch-aparicion 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* 4. Estilos de texto */
-.proyecto-lista div h3 {
-    margin: 0 0 20px 0;
-    font-size: 2rem;
-    color: #007bff;
-}
-
-.proyecto-lista div p {
-    margin: 10px 0;
-    font-size: 1.2rem;
-}
+/* 4. RETARDO EN CASCADA */
+.proyecto-lista:nth-of-type(1) { animation-delay: 0.1s; }
+.proyecto-lista:nth-of-type(2) { animation-delay: 0.2s; }
+.proyecto-lista:nth-of-type(3) { animation-delay: 0.3s; }
+.proyecto-lista:nth-of-type(4) { animation-delay: 0.4s; }
+.proyecto-lista:nth-of-type(5) { animation-delay: 0.5s; }
+.proyecto-lista:nth-of-type(6) { animation-delay: 0.6s; }
+.proyecto-lista:nth-of-type(7) { animation-delay: 0.7s; }
+.proyecto-lista:nth-of-type(8) { animation-delay: 0.8s; }
+.proyecto-lista:nth-of-type(9) { animation-delay: 0.9s; }
+.proyecto-lista:nth-of-type(10) { animation-delay: 1.0s; }

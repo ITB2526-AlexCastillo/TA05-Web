@@ -1,58 +1,62 @@
 /* --- NUEVO MENÚ DE NAVEGACIÓN --- */
-
-/* 1. Contenedor principal: Centra los botones en la pantalla */
+/* --- FONDO MATRIX (¡IMPORTANTE!) --- */
+#ciber-fondo {
+    position: fixed;   /* Lo deja pegado a la pantalla, no se mueve al hacer scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;      /* Ocupa toda la pantalla */
+    z-index: -1;       /* <--- ESTO ES LA CLAVE: Lo manda DETRÁS del texto */
+    pointer-events: none; /* Permite hacer clic en los enlaces a través del fondo */
+}
+/* 1. EL HEADER (Barra de luz completa de lado a lado) */
 .web-header {
     width: 100%;
     padding: 25px 0;
     display: flex;
     justify-content: center;
     background-color: #0d0d0d;
-
-    /* El HAZ DE LUZ: borde rojo con sombra brillante */
-    border-bottom: 2px solid #ff0000;
-    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4);
     margin-bottom: 20px;
+
+    /* POSICIÓN Y VISIBILIDAD (Vital para que se vea sobre el fondo) */
+    position: relative;
+    z-index: 100;
+
+    /* EL HAZ DE LUZ VERDE */
+    border-bottom: 3px solid #00ff00;
+    box-shadow: 0px 5px 20px rgba(0, 255, 0, 0.6); /* Brillo verde intenso */
 }
 
+/* 2. EL CONTENEDOR DE BOTONES (Sin bordes, solo alinea) */
 .nav-principal {
     display: flex;
     gap: 20px;
+    padding: 0; /* Limpio, sin rellenos extra */
+    border: none; /* Aseguramos que no tenga bordes propios */
+    box-shadow: none;
 }
 
 /* Botones cilíndricos rojos */
 .boton-nav {
     text-decoration: none;
-    color: #ff0000;
+
+    /* Texto y borde VERDE */
+    color: #00ff00;
+    border: 2px solid #00ff00;
+
     font-weight: bold;
     padding: 10px 25px;
-    border: 2px solid #ff0000;
     border-radius: 50px;
     transition: all 0.3s ease;
 }
 
 .boton-nav:hover {
-    background-color: #ff0000;
-    color: #000; /* Texto negro al resaltar */
-    box-shadow: 0px 0px 15px #ff0000; /* Efecto neón */
-}
+    /* Al pasar el ratón, fondo VERDE y letras negras */
+    background-color: #00ff00;
+    color: #000;
 
-/* 1. Contenedor que divide la pantalla en dos secciones */
-.contenido-doble {
-    display: flex;
-    flex-direction: row; /* Lateral a la izquierda, Proyectos a la derecha */
-    align-items: flex-start;
-    min-height: 100vh;
-}
-
-/* 2. Sección Izquierda (About Me) - Estrecha */
-.columna-lateral {
-    flex: 0 0 200px; /* Ancho fijo para que no baile */
-    padding: 30px;
-    background-color: #f4f4f4;
-    border-right: 1px solid #ddd;
-    height: 100vh;
-    position: sticky;
-    top: 0;
+    /* Resplandor neón VERDE */
+    box-shadow: 0px 0px 15px #00ff00;
 }
 
 /* 3. CONTENEDOR DE PROYECTOS (La clave está aquí) */
@@ -74,16 +78,53 @@
     align-items: center;   /* Centra verticalmente el texto con las fotos */
     justify-content: space-between; /* Deja espacio entre ambos bloques */
     gap: 50px;             /* Espacio de separación entre texto y fotos */
+    /* --- AÑADIR ESTO PARA CREAR LA TARJETA --- */
+
+    /* 1. Fondo negro al 90% (el 0.9 es la opacidad) */
+    background-color: rgba(10, 10, 10, 0.9);
+
+    /* 2. Un borde fino rojo para delimitar la caja */
+    border: 1px solid #330000; /* O usa #ff0000 si lo quieres muy brillante */
+    border-left: 4px solid #ff0000; /* Borde izquierdo más grueso estilo "Cyberpunk" */
+
+    /* 3. Espacio interior (MUY IMPORTANTE para que el texto no toque los bordes) */
+    padding: 40px;
+
+    /* 4. Sombra exterior para que parezca flotar sobre la lluvia */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+
+    /* 5. (Opcional) Efecto vidrio borroso detrás de la tarjeta */
+    backdrop-filter: blur(5px);
+
+    /* 6. Redondear esquinas un poco */
+    border-radius: 10px;
 }
 
 
-/* Ajustes visuales rápidos */
+
+
 .titulo-proyecto {
+    /* --- ESTILO VISUAL (MANTENER) --- */
+    font-family: 'Courier New', monospace; /* Vital para que las letras no bailen */
     color: #ff0000;
     font-size: 2rem;
-    text-decoration: none;
-}
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 5px;
+    margin: 0;
 
+    /* Efecto de luz de neón (MANTENER) */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+
+    /* --- LO QUE HEMOS QUITADO --- */
+    /* animation: predator-decode ...  <-- ¡ESTO ES LO QUE TE DABA PROBLEMAS!
+       opacity: 0;
+       filter: blur(10px);
+    */
+
+    /* Para evitar saltos de línea */
+    white-space: nowrap;
+}
 .linea-hola {
     color: #b0b0b0; /* Gris claro para que sea legible */
 }
@@ -119,18 +160,7 @@ body {
 
 @media (max-width: 768px) {
 
-    /* Forzamos a que las columnas se apilen una debajo de otra */
-    .contenido-doble {
-        display: flex;
-        flex-direction: column;
-        padding: 15px;
-    }
 
-    /* El "Sobre mí" ahora ocupará todo el ancho arriba */
-    .columna-lateral {
-        width: 100% !important;
-        margin-bottom: 40px;
-    }
 
     /* Los proyectos se ponen en vertical */
     .proyecto {
@@ -166,3 +196,63 @@ body {
         padding: 25px;
     }
 }
+/*FILTRO PANTALLA ANTIGUA */
+body::after {
+    content: " ";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+/*ANIMACION GLIFOS TITULO*/
+.titulo-proyecto {
+    position: relative;
+    /* Tu fuente y color se quedan igual */
+    animation: predator-decode 3s steps(10) forwards;
+}
+
+.titulo-proyecto::before {
+    content: "᚛ ᚑ ᚔ ᚕ ᚖ";
+    position: absolute;
+    width: 100%;
+    left: 0;
+    animation: glifos-cambiantes 2.5s steps(5) forwards;
+}
+
+@keyframes predator-decode {
+    0% { filter: blur(15px); opacity: 0; }
+    100% { filter: blur(0); opacity: 1; }
+}
+
+@keyframes glifos-cambiantes {
+    0% { content: "᚛ ᚑ ᚔ ᚕ"; opacity: 1; }
+    100% { content: ""; opacity: 0; }
+}
+/*EFECTO MAQUINA DE ESCRIBIR*/
+.linea-hola {
+    /* Tu fuente y color se quedan igual */
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    animation: revelar-multilinea 1.5s linear forwards;
+}
+
+/* El prefijo rojo antes del texto */
+.linea-hola::before {
+    content: ">_ ";
+    color: #ff0000;
+}
+
+@keyframes revelar-multilinea {
+    from { clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); }
+    to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+/* Delays para que no salgan todas a la vez */
+.linea-hola:nth-child(1) { animation-delay: 1s; }
+.linea-hola:nth-child(2) { animation-delay: 1.5s; }
+.linea-hola:nth-child(3) { animation-delay: 2s; }
