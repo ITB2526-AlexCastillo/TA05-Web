@@ -1,111 +1,171 @@
-/* --- ESTILO FORMULARIO CIBERADMIN --- */
+/* =========================================
+   1. RESET Y FONDO
+   ========================================= */
+* { box-sizing: border-box; }
+
 body {
     background-color: #0d0d0d;
-    color: #00ff00; /* Texto verde terminal */
-    font-family: 'Courier New', Courier, monospace;
+    color: #e0e0e0;
     margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
 }
 
-/* Header con Haz de Luz */
+/* Canvas Matrix */
+#ciber-fondo {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+}
+
+/* Efecto CRT (Pantalla vieja) */
+.crt-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+    background-size: 100% 4px, 100% 100%;
+    pointer-events: none; animation: flicker 0.15s infinite;
+}
+@keyframes flicker { 0% { opacity: 0.92; } 50% { opacity: 0.98; } 100% { opacity: 0.92; } }
+
+.contenido-web { position: relative; z-index: 10; }
+
+/* =========================================
+   2. HEADER
+   ========================================= */
 .web-header {
-    width: 100%;
-    padding: 25px 0;
-    display: flex;
-    justify-content: center;
+    width: 100%; padding: 25px 0; display: flex; justify-content: center;
+    background-color: rgba(13, 13, 13, 0.95);
     border-bottom: 2px solid #ff0000;
     box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4);
-    margin-bottom: 40px;
+    position: sticky; top: 0; z-index: 100;
 }
-
 .web-header a {
-    text-decoration: none;
-    color: #ff0000;
-    padding: 10px 25px;
-    border: 2px solid #ff0000;
-    border-radius: 50px;
-    margin: 0 10px;
-    font-weight: bold;
+    text-decoration: none; color: #ff0000; font-weight: bold;
+    padding: 10px 25px; border: 2px solid #ff0000; border-radius: 50px;
+    margin: 0 10px; transition: 0.3s; background-color: #000;
+}
+.web-header a:hover, .web-header a.active {
+    background-color: #ff0000; color: black; box-shadow: 0 0 15px #ff0000;
+}
+
+/* =========================================
+   3. ESTRUCTURA DEL FORMULARIO
+   ========================================= */
+.contenedor-principal {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 20px; min-height: 100vh;
+}
+
+.formulario-cuestionario {
+    width: 100%; max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 40px; border: 1px solid #333; border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,1);
+}
+
+.titulo-pag {
+    text-align: center; color: #ff0000; margin-bottom: 30px;
+    text-transform: uppercase; letter-spacing: 3px;
+    border-bottom: 2px dashed #ff0000; padding-bottom: 15px;
+}
+
+/* Bloques de Seguridad (Secciones) */
+.bloque-seguridad {
+    background: #080808; border: 1px solid #333;
+    border-left: 4px solid #ff0000; /* Borde rojo izquierdo */
+    padding: 25px; margin-bottom: 25px; border-radius: 0 5px 5px 0;
+}
+
+h2 { color: #ff0000; margin-top: 0; font-size: 1.2rem; text-transform: uppercase; }
+p { color: #00ff00; font-size: 0.95rem; }
+
+.separador {
+    border: 0; height: 1px; background: linear-gradient(to right, transparent, #ff0000, transparent);
+    margin: 30px 0;
+}
+
+/* =========================================
+   4. INPUTS Y CONTROLES
+   ========================================= */
+label { display: block; margin-top: 15px; color: #e0e0e0; font-weight: bold; }
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%; padding: 12px; margin-top: 8px;
+    background-color: #000; border: 1px solid #333;
+    color: #00ff00; font-family: 'Courier New', monospace;
     transition: 0.3s;
 }
-
-.web-header a:hover {
-    background-color: #ff0000;
-    color: #000;
-    box-shadow: 0 0 15px #ff0000;
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    border-color: #00ff00; outline: none; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
-/* Secciones como Bloques de Seguridad */
-section {
-    background: #121212;
-    border: 1px solid #333;
-    border-left: 4px solid #ff0000; /* Detalle rojo lateral */
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 4px;
+/* Filas de preguntas (Radio buttons) */
+.fila-preguntas {
+    display: flex; justify-content: space-between; gap: 20px; margin-bottom: 20px;
 }
-
-h1 {
-    color: #ff0000;
-    text-align: center;
-    text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+.columna-pregunta { flex: 1; }
+.label-pregunta { color: #ff0000; margin-bottom: 8px; }
+.opciones-radio {
+    display: flex; gap: 15px; background: #000; padding: 10px; border: 1px solid #222;
 }
-
-h2 {
-    color: #ff0000;
-    margin-top: 0;
-    font-size: 1.2rem;
-    text-transform: uppercase;
+.opciones-radio label {
+    margin-top: 0; font-weight: normal; color: #00ff00; cursor: pointer;
 }
+input[type="radio"] { accent-color: #ff0000; }
 
-/* Inputs y Textarea estilo Consola */
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    background-color: #050505;
-    border: 1px solid #00ff00;
-    color: #00ff00;
-    box-sizing: border-box;
-}
+/* Botones */
+.botones-accion { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
 
-/* Botones de Envío */
 input[type="submit"] {
-    background-color: transparent;
-    border: 2px solid #ff0000;
-    color: #ff0000;
-    padding: 12px 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    background-color: transparent; border: 2px solid #ff0000; color: #ff0000;
+    padding: 15px 40px; font-weight: bold; cursor: pointer;
+    text-transform: uppercase; transition: 0.3s; font-family: 'Courier New', monospace;
 }
-
-input[type="submit"]:hover {
-    background-color: #ff0000;
-    color: #000;
-    box-shadow: 0 0 20px #ff0000;
-}
+input[type="submit"]:hover { background-color: #ff0000; color: black; box-shadow: 0 0 20px #ff0000; }
 
 input[type="reset"] {
-    background-color: transparent;
-    border: 1px solid #555;
-    color: #555;
-    padding: 12px 25px;
-    margin-left: 10px;
-    cursor: pointer;
+    background-color: transparent; border: 1px solid #555; color: #555;
+    padding: 15px 30px; cursor: pointer; text-transform: uppercase; font-family: 'Courier New', monospace;
 }
-
-input[type="reset"]:hover {
-    color: #fff;
-    border-color: #fff;
-}
+input[type="reset"]:hover { border-color: #fff; color: #fff; }
 
 /* Footer */
 .web-footer {
-    text-align: center;
-    padding: 30px;
-    color: #444;
-    border-top: 1px solid #222;
+    text-align: center; padding: 30px; color: #666; border-top: 1px solid #222; background: #0d0d0d;
+}
+
+/* =========================================
+   5. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Ajustes generales */
+    .contenedor-principal { padding: 15px; }
+    .formulario-cuestionario { padding: 20px; }
+
+    /* Header compacto */
+    .web-header { padding: 15px 0; }
+    .web-header a { padding: 8px 15px; font-size: 0.8rem; }
+
+    /* Apilar las filas de preguntas */
+    .fila-preguntas {
+        flex-direction: column; /* Cambia de fila a columna */
+        gap: 30px; /* Más espacio entre preguntas */
+    }
+
+    /* Estilo de la caja de preguntas en móvil */
+    .columna-pregunta {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    .opciones-radio {
+        justify-content: flex-start; /* Alinear opciones a la izquierda */
+    }
+
+    /* Botones apilados */
+    .botones-accion {
+        flex-direction: column;
+        width: 100%;
+    }
+    input[type="submit"], input[type="reset"] { width: 100%; }
 }

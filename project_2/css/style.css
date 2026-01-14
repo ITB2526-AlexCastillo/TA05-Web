@@ -1,40 +1,77 @@
-/* --- ESTILO GLOBAL CIBERADMIN --- */
+/* =========================================
+   1. CONFIGURACIÓN GLOBAL & RESET
+   ========================================= */
+* {
+    box-sizing: border-box; /* Vital para que el padding no rompa el ancho en móviles */
+}
+
 body {
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
     line-height: 1.6;
     background-color: #0d0d0d;
     color: #e0e0e0;
+    overflow-x: hidden; /* Evita scroll lateral por animaciones */
 }
-body::after {
-    content: " ";
+
+/* =========================================
+   2. EFECTOS DE FONDO (CRT + MATRIX)
+   ========================================= */
+
+/* Canvas del Matrix (Fondo) */
+#ciber-fondo {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Crea micro-líneas horizontales de televisor viejo */
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 3px 100%;
-    pointer-events: none; /* Para que puedas hacer clic a través de la capa */
-    z-index: 9999;
+    z-index: -1;
 }
 
-/* Header con Haz de Luz Rojo */
+/* Capa de Monitor Viejo (Scanlines) */
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+    background-size: 100% 4px, 100% 100%;
+    pointer-events: none; /* Permite hacer clic a través */
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.92; }
+    50% { opacity: 0.98; }
+    100% { opacity: 0.92; }
+}
+
+/* =========================================
+   3. HEADER (NAVEGACIÓN)
+   ========================================= */
 .web-header {
     width: 100%;
     padding: 25px 0;
     display: flex;
     justify-content: center;
-    background-color: #0d0d0d;
+    background-color: rgba(13, 13, 13, 0.95);
     border-bottom: 2px solid #ff0000;
     box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4);
+    position: sticky; /* Se queda fijo al hacer scroll */
+    top: 0;
+    z-index: 100;
 }
 
 .web-header nav {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap; /* Permite que los botones bajen si no caben */
+    justify-content: center;
 }
 
 .web-header a {
@@ -43,8 +80,11 @@ body::after {
     font-weight: bold;
     padding: 10px 25px;
     border: 2px solid #ff0000;
-    border-radius: 50px; /* Botones cilíndricos */
+    border-radius: 50px;
     transition: 0.3s;
+    background-color: #000;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
 .web-header a:hover {
@@ -53,189 +93,238 @@ body::after {
     box-shadow: 0 0 15px #ff0000;
 }
 
-/* Estructura de Contenido */
+/* =========================================
+   4. CONTENEDOR PRINCIPAL
+   ========================================= */
 .contenedor-principal {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px;
+    min-height: 100vh;
 }
 
 .detalle-proyecto-simple {
     width: 100%;
-    max-width: 850px;
+    max-width: 900px;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 50px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0,1);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
-/* --- EFECTO PREDATOR: DECODIFICACIÓN DE GLIFOS --- */
-
-/* --- EFECTO PREDATOR MEJORADO (Sincronizado) --- */
-
-.titulo-proyecto, .subtitulo-parte {
-    position: relative;
-    color: #ff0000;
+/* =========================================
+   5. TIPOGRAFÍA Y EFECTO PREDATOR (Títulos)
+   ========================================= */
+.titulo-proyecto {
+    text-align: center;
+    margin: 0 0 40px 0;
+    font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 5px;
-    font-weight: bold;
-    text-align: center;
-    padding: 60px 0;
-    /* El texto real se revela en 3 segundos */
-    animation: predator-decode 3s steps(10) forwards;
-}
-
-/* Capa de glifos que DESAPARECE al final */
-.titulo-proyecto::before, .subtitulo-parte::before {
-    content: "᚛ ᚑ ᚔ ᚕ ᚖ ᚗ ᚘ ᚙ ᚚ ᚛";
-    position: absolute;
+    padding-bottom: 20px;
     width: 100%;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
     color: #ff0000;
-    text-shadow: 0 0 15px #ff0000;
-    z-index: 5;
-    /* La animación de glifos dura 2.5s y se queda en opacidad 0 */
-    animation: glifos-cambiantes 2.5s steps(5) forwards;
-    pointer-events: none; /* Para que no interfiera con clics */
-}
-
-/* Animación: Revelado del texto real */
-@keyframes predator-decode {
-    0% {
-        filter: blur(15px);
-        opacity: 0;
-    }
-    80% {
-        filter: blur(5px);
-        opacity: 0.8;
-    }
-    100% {
-        filter: blur(0);
-        opacity: 1;
-        text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
-    }
-}
-
-/* Animación: Glifos que cambian y se desvanecen TOTALMENTE */
-@keyframes glifos-cambiantes {
-    0% {
-        content: "᚛ ᚑ ᚔ ᚕ ᚖ";
-        opacity: 1;
-        filter: blur(0px);
-    }
-    20% { content: "ᚗ ᚘ ᚙ ᚚ ᚛"; opacity: 1; }
-    40% { content: "ᚔ ᚑ ᚕ ᚘ ᚗ"; opacity: 0.8; }
-    60% { content: "ᚖ ᚙ ᚚ ᚛ ᚑ"; opacity: 0.6; }
-    80% {
-        content: "....";
-        opacity: 0.3;
-        filter: blur(2px);
-    }
-    100% {
-        content: "";
-        opacity: 0; /* Desaparición total */
-        display: none;
-    }
-}
-
-/* Alineación de Texto y Fotos */
-.contenido-alineado {
-    display: flex;
-    flex-direction: row; /* Texto y Círculo en línea */
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    margin: 20px 0;
-}
-
-/* --- EFECTO MÁQUINA DE ESCRIBIR (Texto Verde) --- */
-
-/* --- EFECTO MÁQUINA DE ESCRIBIR MULTILÍNEA --- */
-
-/* --- EFECTO REVELADO RÁPIDO --- */
-
-.linea-hola, .bloque-texto p {
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
+    border-bottom: 2px dashed #ff0000;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
     position: relative;
-    overflow: hidden;
-    display: block;
-    width: 100%;
-
-    /* Bajamos el delay a 1s: así empieza mientras el título aún se está decodificando */
-    animation: revelar-multilinea 2s linear forwards;
-    animation-delay: 1.5s;
-
-    /* Estado inicial: Invisible para que no dé un salto visual */
-    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 }
 
-/* Animación de "cortina" de izquierda a derecha */
-@keyframes revelar-multilinea {
-    from {
-        clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-    }
-    to {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-}
-
-/* Hacemos que los párrafos se sigan uno al otro rápidamente */
-.linea-hola:nth-of-type(1) { animation-delay: 1.5s; }
-.linea-hola:nth-of-type(2) { animation-delay: 2.5s; }
-.linea-hola:nth-of-type(3) { animation-delay: 3.5s; }
-
-.linea-hola::before {
-    content: "> ";
+.subtitulo-parte {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    display: inline-block;
     color: #ff0000;
+    border-bottom: 1px solid #ff0000;
+    position: relative;
 }
 
-/* Elementos Visuales */
-.circulo-foto {
-    width: 130px;
-    height: 130px;
-    background-color: #1a1a1a;
-    border: 2px solid #ff0000;
-    border-radius: 50%;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+/* Animación Predator (Decodificación) */
+.hack-decode {
+    animation: predator-decode 1.5s steps(10) forwards;
 }
 
-.bloques-inferiores {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.bloque-cuadrado {
-    padding: 15px 25px;
-    border: 1px solid #00ff00;
-    color: #00ff00;
-    background: #050505;
-    font-weight: bold;
+@keyframes predator-decode {
+    0% { filter: blur(5px); opacity: 0.5; }
+    100% { filter: blur(0); opacity: 1; }
 }
 
 .separador-secciones {
-    width: 100%;
+    width: 80%;
     border: 0;
     height: 1px;
+    margin: 50px 0;
     background: linear-gradient(to right, transparent, #ff0000, transparent);
-    margin: 40px 0;
 }
 
-.navegacion-proyecto {
+/* =========================================
+   6. TEXTOS Y EFECTO ESCRITURA (Verde)
+   ========================================= */
+.seccion-proyecto, .contenido-alineado {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.bloque-texto {
+    max-width: 750px;
+    width: 100%;
+}
+
+.linea-hola, .bloque-texto p, .typing-effect {
     text-align: center;
-    padding: 40px 0;
+    margin: 10px 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #00ff00;
+    min-height: 1.5em; /* Evita saltos de altura */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
-.navegacion-proyecto a {
-    color: #ff0000;
-    text-decoration: none;
-    margin: 0 15px;
+.linea-hola { font-weight: bold; }
+.linea-hola::before { content: "> "; color: #ff0000; }
+
+/* Cursor parpadeante */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1em;
+    background-color: #00ff00;
+    vertical-align: text-bottom;
+    animation: blink 0.8s infinite;
+    margin-left: 2px;
 }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* =========================================
+   7. BLOQUES INFERIORES (Botones/Info)
+   ========================================= */
+.bloques-inferiores {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.bloque-cuadrado {
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.9);
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    min-width: 150px;
+    transition: 0.3s;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+}
+
+.bloque-cuadrado:hover {
+    background: #00ff00;
+    color: black;
+    box-shadow: 0 0 20px #00ff00;
+    transform: scale(1.1);
+}
+
+/* =========================================
+   8. FOOTER
+   ========================================= */
+.navegacion-proyecto { margin-top: 20px; text-align: center; }
+.navegacion-proyecto a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px;
+    font-size: 1.2rem;
+}
+.navegacion-proyecto a:hover { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
 
 .web-footer {
     border-top: 1px solid #333;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
-    color: #555;
+    background: #0d0d0d;
+    color: #666;
+    position: relative;
+    z-index: 10;
+}
+
+/* =========================================
+   9. RESPONSIVE DESIGN (MÓVIL)
+   ========================================= */
+@media (max-width: 768px) {
+
+    /* Contenedor principal ajustado */
+    .contenedor-principal {
+        padding: 15px; /* Menos relleno en los bordes */
+    }
+
+    .detalle-proyecto-simple {
+        padding: 30px 15px; /* Menos relleno interno */
+        margin-top: 10px;
+    }
+
+    /* Ajuste de Header */
+    .web-header { padding: 15px 0; }
+    .web-header nav { gap: 10px; }
+    .web-header a {
+        padding: 8px 15px;
+        font-size: 0.8rem; /* Texto más pequeño en botones */
+    }
+
+    /* Títulos Reducidos */
+    .titulo-proyecto {
+        font-size: 1.8rem; /* De 3rem a 1.8rem */
+        letter-spacing: 2px;
+        line-height: 1.2;
+    }
+
+    .subtitulo-parte {
+        font-size: 1.4rem;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: normal; /* Permite que el texto baje de línea */
+    }
+
+    /* Textos y Párrafos */
+    .linea-hola, .bloque-texto p, .typing-effect {
+        font-size: 1rem;
+        text-align: left; /* En móvil a veces se lee mejor a la izquierda */
+        padding: 0 5px;
+    }
+
+    /* Centramos textos cortos como los de la lista */
+    .linea-hola { text-align: center; }
+
+    /* Bloques Verdes Inferiores (Apilados) */
+    .bloques-inferiores {
+        flex-direction: column; /* Uno debajo del otro */
+        gap: 15px;
+    }
+
+    .bloque-cuadrado {
+        width: 100%; /* Ancho completo */
+        padding: 15px;
+    }
+
+    /* Navegación Final */
+    .navegacion-proyecto a {
+        display: block; /* Botones uno debajo del otro */
+        margin: 15px 0;
+        font-size: 1rem;
+    }
 }

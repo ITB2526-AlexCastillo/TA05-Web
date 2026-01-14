@@ -1,13 +1,70 @@
-/* 1. Título principal centrado arriba */
+/* =========================================
+   1. RESET Y FONDO MATRIX
+   ========================================= */
+* {
+    box-sizing: border-box; /* Vital para responsive */
+}
 
+body {
+    background-color: #0d0d0d; /* Fondo de respaldo */
+    color: #e0e0e0;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden; /* Evita que las animaciones creen scroll horizontal */
+}
+
+/* Canvas del fondo */
+#ciber-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #0d0d0d;
+}
+
+/* =========================================
+   2. EFECTO CRT (PANTALLA VIEJA)
+   ========================================= */
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+    background-size: 100% 4px, 100% 100%;
+    pointer-events: none; /* Permite clicks a través */
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.92; }
+    5% { opacity: 0.88; }
+    10% { opacity: 0.95; }
+    15% { opacity: 0.98; }
+    20% { opacity: 0.92; }
+    100% { opacity: 0.96; }
+}
+
+/* =========================================
+   3. HEADER (Navegación)
+   ========================================= */
 .web-header {
     width: 100%;
     padding: 25px 0;
     display: flex;
     justify-content: center;
-    background-color: #0d0d0d;
+    background-color: rgba(13, 13, 13, 0.95);
     border-bottom: 2px solid #ff0000;
     box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4);
+    position: sticky; /* Pegajoso en PC y Móvil */
+    top: 0;
+    z-index: 100;
 }
 
 .web-header nav {
@@ -21,8 +78,10 @@
     font-weight: bold;
     padding: 10px 25px;
     border: 2px solid #ff0000;
-    border-radius: 50px; /* Botón cilíndrico */
+    border-radius: 50px;
     transition: 0.3s;
+    background-color: #000;
+    text-transform: uppercase;
 }
 
 .web-header a:hover {
@@ -30,112 +89,159 @@
     color: black;
     box-shadow: 0 0 15px #ff0000;
 }
-.titulo-proyecto {
-    text-align: center;
-    margin: 0;
-    padding: 60px 0;
-    width: 100%;
-    color: #ff0000;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-}
 
-.subtitulo-parte {
-    color: #ff0000;
-    border-left: 4px solid #ff0000;
-    padding-left: 15px;
-    text-transform: uppercase;
-}
-
-.separador-secciones {
-    width: 100%;
-    border: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #ff0000, transparent);
-    margin: 40px 0;
-}
-
-
-/* 2. Centrar todo el bloque de contenido en la pantalla */
-body {
-    background-color: #0d0d0d;
-    color: #e0e0e0;
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace; /* Fuente de sistema/hacker */
-}
-
+/* =========================================
+   4. LAYOUT PRINCIPAL
+   ========================================= */
 .contenedor-principal {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px;
     min-height: 100vh;
-    background-color: #0d0d0d;
+    width: 100%;
 }
 
-/* 3. El artículo actúa como una columna central de ancho fijo */
 .detalle-proyecto-simple {
     width: 100%;
-    max-width: 800px; /* Limita el ancho para que no se desparrame en pantallas grandes */
+    max-width: 900px;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 50px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 1);
+
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* El texto dentro del bloque sigue empezando a la izquierda */
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
-/* 4. Aseguramos que cada sección ocupe todo el ancho del bloque central */
-.seccion-proyecto,
-.contenido-alineado,
+/* =========================================
+   5. TIPOGRAFÍA Y ANIMACIONES DE TEXTO
+   ========================================= */
+.titulo-proyecto {
+    text-align: center;
+    margin: 0 0 40px 0;
+    width: 100%;
+    color: #ff0000;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    border-bottom: 2px dashed #ff0000;
+    padding-bottom: 20px;
+
+    opacity: 0;
+    animation: pid-stabilize 1.5s ease-out forwards;
+}
+
+.subtitulo-parte {
+    color: #ff0000;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ff0000;
+    padding: 10px 20px;
+    display: inline-block;
+
+    opacity: 0;
+    animation: pid-stabilize 1.2s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.separador-secciones {
+    width: 80%;
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ff0000, transparent);
+    margin: 50px 0;
+}
+
+.linea-hola, .bloque-texto p {
+    text-align: center;
+    margin: 10px 0;
+    color: #00ff00;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    min-height: 1.5em; /* Evita saltos cuando escribe */
+}
+
+/* Animación de oscilación (PID) */
+@keyframes pid-stabilize {
+    0%   { transform: translateX(-50px); opacity: 0; }
+    20%  { transform: translateX(40px); opacity: 1; }
+    40%  { transform: translateX(-25px); }
+    60%  { transform: translateX(10px); }
+    80%  { transform: translateX(-5px); }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Cursor parpadeante */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1em;
+    background-color: #00ff00;
+    vertical-align: text-bottom;
+    animation: blink 0.8s infinite;
+    margin-left: 2px;
+    box-shadow: 0 0 10px #00ff00;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* =========================================
+   6. BLOQUES INFERIORES
+   ========================================= */
 .bloques-inferiores {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-/* 5. Los elementos internos */
-.linea-hola, .bloque-texto p {
-    text-align: left;
-    margin: 10px 0;
-}
-
-.circulo-foto {
-    width: 120px;
-    height: 120px;
-    background-color: #1a1a1a;
-    border: 2px solid #ff0000;
-    border-radius: 50%;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
 }
 
 .bloque-cuadrado {
     padding: 20px;
-    border: 1px solid #00ff00; /* Verde terminal para módulos */
-    background: #0a0a0a;
+    border: 1px solid #00ff00;
+    background: rgba(10, 10, 10, 0.9);
     color: #00ff00;
     font-weight: bold;
     text-align: center;
     border-radius: 5px;
-    width: 150px;
+    min-width: 150px;
+    transition: 0.3s;
+
+    opacity: 0;
+    animation: fade-in 1s ease-out forwards 2s;
 }
 
-.linea-hola, .bloque-texto p {
-    color: #00ff00; /* Texto verde estilo terminal */
+@keyframes fade-in { to { opacity: 1; } }
+
+.bloque-cuadrado:hover {
+    background: #00ff00;
+    color: black;
+    box-shadow: 0 0 20px #00ff00;
+    transform: scale(1.1);
 }
 
-.linea-hola::before {
-    content: "> ";
-    color: #ff0000;
-}
-
+/* =========================================
+   7. FOOTER
+   ========================================= */
+.navegacion-proyecto { margin-top: 20px; text-align: center; }
 .navegacion-proyecto a {
-    color: #ff0000;
+    color: #e0e0e0;
     text-decoration: none;
     font-weight: bold;
-    border-bottom: 1px dashed #ff0000;
+    margin: 0 15px;
+    font-size: 1.2rem;
 }
+.navegacion-proyecto a:hover { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
 
 .web-footer {
     border-top: 1px solid #333;
@@ -143,5 +249,77 @@ body {
     text-align: center;
     background: #0d0d0d;
     color: #666;
+    position: relative;
+    z-index: 10;
 }
 
+/* =========================================
+   8. RESPONSIVE DESIGN (MÓVIL)
+   ========================================= */
+@media (max-width: 768px) {
+
+    /* Ajustes del contenedor para ganar espacio */
+    .contenedor-principal {
+        padding: 15px;
+    }
+
+    .detalle-proyecto-simple {
+        padding: 25px 15px; /* Menos padding lateral */
+        margin-top: 10px;
+    }
+
+    /* Header Compacto */
+    .web-header { padding: 15px 0; }
+    .web-header nav { gap: 10px; }
+    .web-header a {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* Títulos más pequeños */
+    .titulo-proyecto {
+        font-size: 1.8rem; /* Reducimos mucho el tamaño */
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        line-height: 1.2;
+    }
+
+    .subtitulo-parte {
+        font-size: 1.4rem;
+        width: 100%;
+        box-sizing: border-box;
+        line-height: 1.3;
+    }
+
+    /* Texto legible */
+    .linea-hola, .bloque-texto p {
+        font-size: 1rem;
+    }
+
+    /* Bloques inferiores apilados */
+    .bloques-inferiores {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .bloque-cuadrado {
+        width: 100%; /* Botón ancho completo */
+        padding: 15px;
+    }
+
+    /* Ajuste de animación para que no salga de la pantalla en móvil */
+    @keyframes pid-stabilize {
+        0%   { transform: translateX(-20px); opacity: 0; }
+        20%  { transform: translateX(15px); opacity: 1; }
+        40%  { transform: translateX(-10px); }
+        60%  { transform: translateX(5px); }
+        80%  { transform: translateX(-2px); }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Navegación final apilada */
+    .navegacion-proyecto a {
+        display: block;
+        margin: 15px 0;
+    }
+}

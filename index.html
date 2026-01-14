@@ -3,76 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refined Presentation Page</title>
+    <title>Portfolio Mainframe</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <canvas id="ciber-fondo"></canvas>
+
     <header class="web-header">
-    <nav class="nav-principal"> <a href="./index.html" class="boton-nav">HOME</a>
-        <a href="./project_list/project_list.html" class="boton-nav">PROJECTS</a>
-        <a href="./feedback/feedback.html" class="boton-nav">CONTACT</a>
-    </nav>
-</header>
+        <nav class="nav-principal">
+            <a href="project_list/index.html" class="boton-nav">PROJECTS</a>
+            <a href="feedback/index.html" class="boton-nav">CONTACT</a>
+        </nav>
+    </header>
 
     <main class="contenedor-principal">
-    <div class="contenido-doble">
-
-        <aside class="columna-lateral">
-            <div class="sobre-mi">
-                <h4 class="titulo-lateral">About Me</h4>
-                <p>Here you can write your personal information, experience, and skills. Use this space to showcase your personal "self-flex"!</p>
-            </div>
-        </aside>
-
         <article class="proyecto">
 
-    <div class="columna-info">
-        <div class="texto-proyecto">
-            <a href="project_1/project_1.html">
-                <h3 class="titulo-proyecto">Project Title 1</h3>
-            </a>
-            <div class="lineas-texto">
-                <p class="linea-hola">hello</p>
-                <p class="linea-hola">hello</p>
-                <p class="linea-hola">hello</p>
-                <p class="linea-hola">hello</p>
+            <div class="columna-info">
+                <div class="texto-proyecto">
+                    <a href="project_1/index.html">
+                       <h3 class="titulo-proyecto" data-value="PID BALANCE SYSTEM">PID BALANCE SYSTEM</h3>
+                    </a>
+                    <div class="lineas-texto">
+                        <p>> System: Automatic Stability Control</p>
+                        <p>> Algorithm: Proportional-Integral-Derivative Loop</p>
+                        <p>> Hardware: Distance Sensors & Servo Actuators</p>
+                        <p>> Status: Real-time error correction active</p>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="contenedor-fotos-triangulo">
-            <div class="circulo-foto top"></div>
-            <div class="circulo-foto bottom-left"></div>
-            <div class="circulo-foto bottom-right"></div>
-        </div>
-    </div>
-
-    <div class="columna-info">
-        <div class="texto-proyecto">
-            <a href="project_2/project_2.html">
-                <h3 class="titulo-proyecto">Project Title 2</h3>
-            </a>
-            <div class="lineas-texto">
-                <p class="linea-hola">hello</p>
-                <p class="linea-hola">hello</p>
-                <p class="linea-hola">hello</p>
-                <p class="linea-hola">hello</p>
+            <div class="columna-info">
+                <div class="texto-proyecto">
+                    <a href="project_2/index.html">
+                       <h3 class="titulo-proyecto" data-value="MOBILE APPLICATION">MOBILE APPLICATION</h3>
+                    </a>
+                    <div class="lineas-texto">
+                        <p>> Platform: Cross-Platform Architecture</p>
+                        <p>> UX/UI: Modern High-Fidelity Design</p>
+                        <p>> Features: Cloud Sync & User Authentication</p>
+                        <p>> Status: Deployed & Optimized</p>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="contenedor-fotos-triangulo">
-            <div class="circulo-foto top"></div>
-            <div class="circulo-foto bottom-left"></div>
-            <div class="circulo-foto bottom-right"></div>
-        </div>
-    </div>
+        </article>
+    </main>
 
-        </article> </div>
-</main>
-
-    <footer class="web-footer">
-        <p>© 2026 - Mi Portfolio Profesional</p>
+   <footer class="web-footer">
+        <p>© 2026 - System Administrator</p>
     </footer>
+
+    <script src="js/script.js"></script>
 
 </body>
 </html>

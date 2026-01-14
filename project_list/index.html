@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Catalog - Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <canvas id="ciber-fondo"></canvas>
+
+    <header class="web-header">
+        <nav class="nav-principal">
+            <a href="../index.html">HOME</a>
+            <a href="../feedback/index.html">FEEDBACK</a>
+        </nav>
+    </header>
+
+    <main class="contenedor-principal">
+
+        <a href="../project_1/index.html" class="proyecto-lista">
+            <h3>PID STABILIZER</h3>
+            <div class="datos-tecnicos">
+                <p>HW: Arduino / Gyro</p>
+                <p>Code: C++ / Control Loop</p>
+            </div>
+            <div class="descripcion-oculta">
+                Automated self-balancing system. Maintains stability using real-time PID algorithm calculations.
+            </div>
+        </a>
+
+        <a href="../project_2/index.html" class="proyecto-lista">
+            <h3>SURVEY ANALYZER</h3>
+            <div class="datos-tecnicos">
+                <p>App: Java Desktop</p>
+                <p>Feat: Data Viz / Charts</p>
+            </div>
+            <div class="descripcion-oculta">
+                Interactive dashboard to process questionnaire data. Visualizes statistics with dynamic graphs.
+            </div>
+        </a>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="NETWORK PACKET SNIFFER">NETWORK PACKET SNIFFER</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Python, Scapy, Wireshark</p>
+                <p>Rol: Network Analyst</p>
+                <p>Año: 2024</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Analizador de tráfico de red capaz de capturar paquetes, filtrar protocolos y exportar datos para análisis forense.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="LINUX SERVER HARDENING">LINUX SERVER HARDENING</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Bash, IPTables, SELinux</p>
+                <p>Rol: SysAdmin</p>
+                <p>Año: 2024</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Script automatizado para asegurar servidores Ubuntu: configuración de firewall, gestión de usuarios y cierre de puertos.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="AUTOMATED BACKUP SCRIPT">AUTOMATED BACKUP SCRIPT</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Bash Shell, Cron, AWS S3</p>
+                <p>Rol: DevOps Engineer</p>
+                <p>Año: 2024</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Sistema de copias de seguridad incrementales automáticas con cifrado GPG y subida a la nube para recuperación ante desastres.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="DDOS ATTACK SIMULATION">DDOS ATTACK SIMULATION</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Python, Hping3 (Laboratorio Ético)</p>
+                <p>Rol: Pentester</p>
+                <p>Año: 2023</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Entorno controlado para simular ataques de denegación de servicio y probar la resistencia de firewalls y balanceadores.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="VPN SERVER WIREGUARD">VPN SERVER WIREGUARD</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: WireGuard, Linux Networking</p>
+                <p>Rol: Network Admin</p>
+                <p>Año: 2023</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Configuración de túneles VPN de alta velocidad y baja latencia para acceso remoto seguro a infraestructura crítica.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="IDS/IPS WITH SNORT">IDS/IPS WITH SNORT</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Snort, Ubuntu Server</p>
+                <p>Rol: Security Analyst</p>
+                <p>Año: 2023</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Sistema de detección de intrusos configurado con reglas personalizadas para alertar sobre tráfico malicioso en tiempo real.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="KEYLOGGER (EDUCATIONAL)">KEYLOGGER (EDUCATIONAL)</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: C++, Windows API</p>
+                <p>Rol: Malware Researcher</p>
+                <p>Año: 2023</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Investigación sobre captura de teclas a bajo nivel en Windows para entender vectores de ataque y métodos de detección.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="DOCKER CONTAINER SECURITY">DOCKER CONTAINER SECURITY</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Docker, Trivy, Clair</p>
+                <p>Rol: DevSecOps</p>
+                <p>Año: 2022</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Pipeline de escaneo de vulnerabilidades en imágenes Docker antes del despliegue en producción.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="ACTIVE DIRECTORY LAB">ACTIVE DIRECTORY LAB</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Windows Server 2019, PowerShell</p>
+                <p>Rol: SysAdmin</p>
+                <p>Año: 2022</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Creación de un dominio completo con gestión de usuarios, GPOs y simulación de ataques Kerberoasting.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="HONEYPOT DEPLOYMENT">HONEYPOT DEPLOYMENT</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Cowrie, Python</p>
+                <p>Rol: Blue Team Operator</p>
+                <p>Año: 2022</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Despliegue de un servidor SSH falso para atraer atacantes, registrar sus comandos y analizar su comportamiento.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="PASSWORD STRENGTH TESTER">PASSWORD STRENGTH TESTER</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Python, Regex</p>
+                <p>Rol: Developer</p>
+                <p>Año: 2022</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Algoritmo para evaluar la entropía de contraseñas y sugerir mejoras de seguridad basadas en políticas NIST.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="SQL INJECTION SCANNER">SQL INJECTION SCANNER</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Python, Requests, SQLMap</p>
+                <p>Rol: Web Security Tester</p>
+                <p>Año: 2021</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Script automatizado que detecta parámetros vulnerables en URLs web probando payloads comunes de inyección SQL.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="ENCRYPTED CHAT APP">ENCRYPTED CHAT APP</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Python, Cryptography (Fernet)</p>
+                <p>Rol: Software Engineer</p>
+                <p>Año: 2021</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Aplicación de mensajería cliente-servidor con cifrado de extremo a extremo utilizando AES simétrico.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="WIFI DEAUTH TOOL">WIFI DEAUTH TOOL</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Python, Aircrack-ng suite</p>
+                <p>Rol: Wireless Auditor</p>
+                <p>Año: 2021</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Script para pruebas de penetración wireless mediante el envío de paquetes de desautenticación a clientes conectados.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="FIREWALL CONFIGURATION">FIREWALL CONFIGURATION</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: pfSense, VLANs</p>
+                <p>Rol: Network Architect</p>
+                <p>Año: 2020</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Segmentación de red corporativa utilizando pfSense, creando zonas DMZ y reglas estrictas de tráfico.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="STEGANOGRAPHY TOOL">STEGANOGRAPHY TOOL</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Python, Pillow (Images)</p>
+                <p>Rol: Researcher</p>
+                <p>Año: 2020</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Software capaz de ocultar mensajes de texto cifrados dentro de los bits menos significativos de imágenes PNG.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="METASPLOIT EXPLOIT DEV">METASPLOIT EXPLOIT DEV</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: Ruby, Assembly (x86)</p>
+                <p>Rol: Exploit Developer</p>
+                <p>Año: 2020</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Desarrollo de un módulo personalizado para Metasploit Framework aprovechando un buffer overflow en software legacy.</p>
+            </div>
+        </article>
+
+        <article class="proyecto-lista">
+            <a href="#">
+                <h3 class="titulo-proyecto" data-value="VULNERABILITY ASSESSMENT">VULNERABILITY ASSESSMENT</h3>
+            </a>
+            <div class="datos-tecnicos">
+                <p>Tecnología: OpenVAS, Nessus</p>
+                <p>Rol: Auditor</p>
+                <p>Año: 2019</p>
+            </div>
+            <div class="descripcion-oculta">
+                <p>Auditoría completa de infraestructura, escaneo de vulnerabilidades y redacción de informes de remediación.</p>
+            </div>
+        </article>
+
+    </main>
+
+    <footer class="web-footer">
+        <p>Navigation Menu | © 2026</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

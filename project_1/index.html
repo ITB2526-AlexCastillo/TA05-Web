@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PID Stabilizer | Project Details</title>
+
+    <style>
+        /* =========================================
+           EFECTO PANTALLA ANTIGUA (CRT) - ¡NUEVO!
+           ========================================= */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999; /* Por encima de todo */
+            background:
+                /* Líneas de escaneo (Scanlines) */
+                linear-gradient(
+                    rgba(18, 16, 16, 0) 50%,
+                    rgba(0, 0, 0, 0.25) 50%
+                ),
+                /* Viñeteado (Esquinas oscuras) */
+                radial-gradient(
+                    circle,
+                    rgba(0,0,0,0) 60%,
+                    rgba(0,0,0,0.6) 100%
+                );
+            background-size: 100% 4px, 100% 100%; /* Grosor de las líneas */
+            pointer-events: none; /* IMPORTANTE: Permite hacer clic a través de esta capa */
+            animation: flicker 0.15s infinite;
+        }
+
+        /* Animación de parpadeo de pantalla vieja */
+        @keyframes flicker {
+            0% { opacity: 0.92; }
+            5% { opacity: 0.88; }
+            10% { opacity: 0.95; }
+            15% { opacity: 0.98; }
+            20% { opacity: 0.92; }
+            100% { opacity: 0.96; }
+        }
+
+        /* =========================================
+           ANIMACIONES PREVIAS (PID + TEXTO)
+           ========================================= */
+
+        /* Animación PID: Oscilación que se estabiliza */
+        @keyframes pid-stabilize {
+            0%   { transform: translateX(-50px); opacity: 0; }
+            20%  { transform: translateX(40px); opacity: 1; }
+            40%  { transform: translateX(-25px); }
+            60%  { transform: translateX(10px); }
+            80%  { transform: translateX(-5px); }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Cursor parpadeante estilo terminal */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1em;
+            background-color: #00ff00;
+            vertical-align: text-bottom;
+            animation: blink 0.8s infinite;
+            margin-left: 2px;
+            box-shadow: 0 0 10px #00ff00; /* Glow al cursor */
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* =========================================
+           ESTILOS GENERALES
+           ========================================= */
+        #ciber-fondo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; background-color: #0d0d0d;
+        }
+        body {
+            background-color: transparent; color: #e0e0e0; margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        .web-header {
+            width: 100%; padding: 25px 0; display: flex; justify-content: center;
+            background-color: rgba(13, 13, 13, 0.95); border-bottom: 2px solid #ff0000;
+            box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4); position: relative; z-index: 10;
+        }
+        .web-header nav { display: flex; gap: 20px; }
+        .web-header a {
+            text-decoration: none; color: #ff0000; font-weight: bold;
+            padding: 10px 25px; border: 2px solid #ff0000; border-radius: 50px;
+            transition: 0.3s; background-color: #000;
+        }
+        .web-header a:hover { background-color: #ff0000; color: black; box-shadow: 0 0 15px #ff0000; }
+
+        /* CONTENEDOR */
+        .contenedor-principal {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 20px; min-height: 100vh;
+        }
+        .detalle-proyecto-simple {
+            width: 100%; max-width: 900px; background-color: rgba(0, 0, 0, 0.85);
+            padding: 50px; border: 1px solid #333; border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,0,0,1); margin-top: 20px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+        }
+
+        /* TÍTULOS (Animación CSS) */
+        .titulo-proyecto {
+            text-align: center; margin: 0 0 40px 0; color: #ff0000; font-size: 3rem;
+            text-transform: uppercase; letter-spacing: 5px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+            border-bottom: 2px dashed #ff0000; padding-bottom: 20px; width: 100%;
+            opacity: 0;
+            animation: pid-stabilize 1.5s ease-out forwards;
+        }
+
+        .subtitulo-parte {
+            color: #ff0000; font-size: 2rem; text-transform: uppercase; margin-bottom: 20px;
+            border-bottom: 1px solid #ff0000; padding: 10px 20px; display: inline-block;
+            opacity: 0;
+            animation: pid-stabilize 1.2s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .separador-secciones {
+            width: 80%; border: 0; height: 1px;
+            background: linear-gradient(to right, transparent, #ff0000, transparent);
+            margin: 50px 0;
+        }
+
+        /* TEXTOS */
+        .seccion-proyecto, .contenido-alineado {
+            width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px;
+        }
+        .bloque-texto { max-width: 750px; }
+
+        .linea-hola, .bloque-texto p {
+            text-align: center; margin: 10px 0; color: #00ff00;
+            font-size: 1.1rem; line-height: 1.6;
+            min-height: 1.5em;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Glow verde al texto */
+        }
+        .linea-hola::before { content: ""; }
+
+        /* CUADRADOS INFERIORES */
+        .bloques-inferiores {
+            width: 100%; display: flex; flex-direction: row; justify-content: center;
+            flex-wrap: wrap; gap: 30px; margin-top: 30px;
+        }
+        .bloque-cuadrado {
+            padding: 20px; border: 1px solid #00ff00; background: rgba(10, 10, 10, 0.9);
+            color: #00ff00; font-weight: bold; text-align: center; border-radius: 5px;
+            min-width: 150px; transition: 0.3s;
+            opacity: 0; animation: fade-in 1s ease-out forwards 2s;
+        }
+        @keyframes fade-in { to { opacity: 1; } }
+        .bloque-cuadrado:hover {
+            background: #00ff00; color: black; box-shadow: 0 0 20px #00ff00; transform: scale(1.1);
+        }
+
+        /* FOOTER */
+        .navegacion-proyecto { margin-top: 20px; text-align: center; }
+        .navegacion-proyecto a {
+            color: #e0e0e0; text-decoration: none; font-weight: bold; margin: 0 15px; font-size: 1.2rem;
+        }
+        .navegacion-proyecto a:hover { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+        .web-footer {
+            border-top: 1px solid #333; padding: 30px; text-align: center;
+            background: #0d0d0d; color: #666; position: relative; z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="crt-overlay"></div>
+
+    <canvas id="ciber-fondo"></canvas>
+
+    <header class="web-header">
+        <nav>
+            <a href="../index.html">HOME</a>
+            <a href="../project_list/index.html">PROJECTS</a>
+            <a href="../feedback/index.html">FEEDBACK</a>
+        </nav>
+    </header>
+
+    <main class="contenedor-principal">
+
+        <article class="detalle-proyecto-simple">
+
+            <h1 class="titulo-proyecto">PID STABILIZER SYSTEM</h1>
+
+            <section class="seccion-proyecto" id="parte-1">
+                <h2 class="subtitulo-parte">Part 1: Research</h2>
+
+                <p class="linea-hola typing-effect">
+                    Project started from scratch. Deep analysis of Control Theory.
+                </p>
+                <div class="contenido-alineado">
+                    <div class="bloque-texto">
+                        <p class="typing-effect">We began by investigating Control Theory to stabilize an inherently unstable system. We analyzed the mathematical values of the PID (Proportional, Integral, Derivative) controller to understand how to counteract gravity and inertia before writing any code.</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="separador-secciones">
+
+            <section class="seccion-proyecto" id="parte-2">
+                <h2 class="subtitulo-parte">Part 2: Development</h2>
+                <p class="linea-hola typing-effect">3D Printed Structure.</p>
+                <p class="linea-hola typing-effect">Pre-established engineering measurements.</p>
+                <p class="linea-hola typing-effect">C++ Algorithm Creation.</p>
+                <div class="contenido-alineado">
+                    <div class="bloque-texto">
+                        <h3 class="subtitulo-parte" style="font-size: 1.3rem; border:none;">Implementation Details</h3>
+                        <p class="typing-effect">The balance was created using a 3D printer with established dimensions to ensure physical stability. The code was developed to read sensor data and apply corrective force instantly.</p>
+                    </div>
+                </div>
+                <div class="bloques-inferiores">
+                    <div class="bloque-cuadrado">3D Printing</div>
+                    <div class="bloque-cuadrado">C++ Logic</div>
+                    <div class="bloque-cuadrado">PID Tuning</div>
+                </div>
+            </section>
+
+            <hr class="separador-secciones">
+
+            <section class="seccion-proyecto" id="parte-3">
+                <h2 class="subtitulo-parte">Part 3: Final Results</h2>
+                <p class="linea-hola typing-effect">Near 100% precision achieved.</p>
+                <div class="contenido-alineado">
+                    <div class="bloque-texto">
+                        <p class="typing-effect">The final result is a system capable of keeping the ball centered with exceptional accuracy. The balance resists external disturbances and stabilizes the ball within milliseconds.</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="separador-secciones">
+
+            <nav class="navegacion-proyecto">
+                <a href="../project_list/index.html">Back to List</a> |
+                <a href="../project_2/index.html">Next Project &gt;</a>
+            </nav>
+
+        </article>
+
+    </main>
+
+    <footer class="web-footer">
+        <p>&copy; 2026 Your Name | PID Project Documentation.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const elements = document.querySelectorAll('.typing-effect');
+
+            elements.forEach(el => {
+                el.dataset.fullText = el.innerText.trim();
+                el.innerHTML = "";
+            });
+
+            const typeOneElement = (element) => {
+                return new Promise((resolve) => {
+                    const text = element.dataset.fullText;
+                    let i = 0;
+
+                    element.innerHTML = '<span class="cursor"></span>';
+                    const cursor = element.querySelector('.cursor');
+
+                    const interval = setInterval(() => {
+                        const currentText = text.substring(0, i + 1);
+                        element.innerHTML = currentText + '<span class="cursor"></span>';
+                        i++;
+
+                        if (i === text.length) {
+                            clearInterval(interval);
+                            const finalCursor = element.querySelector('.cursor');
+                            if(finalCursor) finalCursor.remove();
+                            resolve();
+                        }
+                    }, 30);
+                });
+            };
+
+            await new Promise(r => setTimeout(r, 1000));
+
+            for (const el of elements) {
+                await typeOneElement(el);
+            }
+        });
+    </script>
+
+    <script src="../js/script.js"></script>
+
+</body>
+</html>

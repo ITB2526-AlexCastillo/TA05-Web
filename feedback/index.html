@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact / Feedback Questionnaire</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="crt-overlay"></div>
+    <canvas id="ciber-fondo"></canvas>
+
+    <div class="contenido-web">
+        <header class="web-header">
+            <nav>
+                <a href="../index.html">HOME</a>
+                <a href="../project_list/index.html">PROJECTS</a>
+                <a href="index.html" class="active">FEEDBACK</a>
+            </nav>
+        </header>
+
+        <main class="contenedor-principal">
+
+            <form action="#" method="POST" class="formulario-cuestionario">
+
+                <h1 class="titulo-pag">SYSTEM FEEDBACK</h1>
+
+                <section class="bloque-seguridad">
+                    <h2>Part 1: Identity Verification</h2>
+                    <p>Please enter your contact information:</p>
+
+                    <label for="nombre">User Name:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="> Enter name..." required>
+
+                    <label for="email">Comms Address (Email):</label>
+                    <input type="email" id="email" name="email" placeholder="> Enter email..." required>
+                </section>
+
+                <hr class="separador">
+
+                <section class="bloque-seguridad">
+                    <h2>Part 2: System Diagnostics</h2>
+                    <p>Evaluate current system performance:</p>
+
+                    <div class="fila-preguntas">
+                        <div class="columna-pregunta">
+                            <label class="label-pregunta">1. Navigation ease:</label>
+                            <div class="opciones-radio">
+                                <label><input type="radio" name="q1" value="easy" checked> Easy</label>
+                                <label><input type="radio" name="q1" value="hard"> Hard</label>
+                            </div>
+                        </div>
+
+                        <div class="columna-pregunta">
+                            <label class="label-pregunta">2. Visual Interface:</label>
+                            <div class="opciones-radio">
+                                <label><input type="radio" name="q2" value="good" checked> Good</label>
+                                <label><input type="radio" name="q2" value="poor"> Poor</label>
+                            </div>
+                        </div>
+
+                        <div class="columna-pregunta">
+                            <label class="label-pregunta">3. Latency (Speed):</label>
+                            <div class="opciones-radio">
+                                <label><input type="radio" name="q3" value="fast" checked> Fast</label>
+                                <label><input type="radio" name="q3" value="slow"> Slow</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fila-preguntas">
+                        <div class="columna-pregunta">
+                            <label class="label-pregunta">4. Mobile Compatibility:</label>
+                            <div class="opciones-radio">
+                                <label><input type="radio" name="q4" value="yes" checked> Yes</label>
+                                <label><input type="radio" name="q4" value="no"> No</label>
+                            </div>
+                        </div>
+
+                        <div class="columna-pregunta">
+                            <label class="label-pregunta">5. Data Clarity:</label>
+                            <div class="opciones-radio">
+                                <label><input type="radio" name="q5" value="yes" checked> Yes</label>
+                                <label><input type="radio" name="q5" value="no"> No</label>
+                            </div>
+                        </div>
+
+                        <div class="columna-pregunta">
+                            <label class="label-pregunta">6. Recommendation:</label>
+                            <div class="opciones-radio">
+                                <label><input type="radio" name="q6" value="yes" checked> Yes</label>
+                                <label><input type="radio" name="q6" value="no"> No</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="separador">
+
+                <section class="bloque-seguridad">
+                    <h2>Additional Data Logs</h2>
+                    <label for="comentarios">Suggestions or system errors:</label>
+                    <textarea id="comentarios" name="comentarios" rows="5" placeholder="> Input data log..."></textarea>
+                </section>
+
+                <hr class="separador">
+
+                <div class="botones-accion">
+                    <input type="submit" value="[ UPLOAD DATA ]">
+                    <input type="reset" value="[ PURGE FORM ]">
+                </div>
+
+            </form>
+
+        </main>
+
+        <footer class="web-footer">
+            <p>SECURE SERVER | &copy; 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('ciber-fondo');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const chars = '010101XYZDATA_ERROR';
+        const charArray = chars.split('');
+        const fontSize = 14;
+        const columns = window.innerWidth / fontSize;
+        const drops = [];
+        for(let i=0; i<columns; i++) drops[i] = 1;
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i=0; i<drops.length; i++) {
+                const text = charArray[Math.floor(Math.random()*charArray.length)];
+                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+    </script>
+</body>
+</html>
